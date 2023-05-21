@@ -57,16 +57,14 @@ public class Controlador
         for (int i = 0; i < CANTIDAD_ASCENSORES; i++)
         {
             Ascensor ascensor = new Ascensor(i);
-            Thread asc = new Thread(new ThreadStart(aversiestocompila));
-            asc.Start();
+            // Thread asc = new Thread(new ThreadStart(aversiestocompila));
+            // asc.Start();
 
         }
 
 
     }
-    private stati void aversiestocompila(){
 
-        }
 /* HAY QUE PONER UN SEMAFOROOOOOO
     public static void updateElevatorLists(Elevator elevator)
     {

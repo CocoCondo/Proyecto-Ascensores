@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\leona\\Desktop\\Sistemas Operativos\\Proyecto\\Proyecto.csproj": {}
+    "/home/coti/ucu/Proyecto-Ascensores/proyecto/src/Library/Library.csproj": {}
   },
   "projects": {
-    "c:\\Users\\leona\\Desktop\\Sistemas Operativos\\Proyecto\\Proyecto.csproj": {
+    "/home/coti/ucu/Proyecto-Ascensores/proyecto/src/Library/Library.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\leona\\Desktop\\Sistemas Operativos\\Proyecto\\Proyecto.csproj",
-        "projectName": "Proyecto",
-        "projectPath": "c:\\Users\\leona\\Desktop\\Sistemas Operativos\\Proyecto\\Proyecto.csproj",
-        "packagesPath": "C:\\Users\\leona\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\leona\\Desktop\\Sistemas Operativos\\Proyecto\\obj\\",
+        "projectUniqueName": "/home/coti/ucu/Proyecto-Ascensores/proyecto/src/Library/Library.csproj",
+        "projectName": "Library",
+        "projectPath": "/home/coti/ucu/Proyecto-Ascensores/proyecto/src/Library/Library.csproj",
+        "packagesPath": "/home/coti/.nuget/packages/",
+        "outputPath": "/home/coti/ucu/Proyecto-Ascensores/proyecto/src/Library/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\leona\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "/home/coti/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
@@ -52,7 +52,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.311\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/6.0.113/RuntimeIdentifierGraph.json"
         }
       }
     }
