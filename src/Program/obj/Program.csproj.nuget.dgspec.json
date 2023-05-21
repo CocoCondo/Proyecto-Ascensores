@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/home/coti/ucu/Proyecto-Ascensores/src/Program/Program.csproj": {}
+    "C:\\Users\\leona\\Desktop\\Sistemas Operativos\\ProyAscensoresC#\\Proyecto-Ascensores\\src\\program\\Program.csproj": {}
   },
   "projects": {
-    "/home/coti/ucu/Proyecto-Ascensores/src/Library/Library.csproj": {
+    "C:\\Users\\leona\\Desktop\\Sistemas Operativos\\ProyAscensoresC#\\Proyecto-Ascensores\\src\\Library\\Library.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/coti/ucu/Proyecto-Ascensores/src/Library/Library.csproj",
+        "projectUniqueName": "C:\\Users\\leona\\Desktop\\Sistemas Operativos\\ProyAscensoresC#\\Proyecto-Ascensores\\src\\Library\\Library.csproj",
         "projectName": "Library",
-        "projectPath": "/home/coti/ucu/Proyecto-Ascensores/src/Library/Library.csproj",
-        "packagesPath": "/home/coti/.nuget/packages/",
-        "outputPath": "/home/coti/ucu/Proyecto-Ascensores/src/Library/obj/",
+        "projectPath": "C:\\Users\\leona\\Desktop\\Sistemas Operativos\\ProyAscensoresC#\\Proyecto-Ascensores\\src\\Library\\Library.csproj",
+        "packagesPath": "C:\\Users\\leona\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\leona\\Desktop\\Sistemas Operativos\\ProyAscensoresC#\\Proyecto-Ascensores\\src\\Library\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/coti/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\leona\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
@@ -52,21 +52,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/6.0.113/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.311\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "/home/coti/ucu/Proyecto-Ascensores/src/Program/Program.csproj": {
+    "C:\\Users\\leona\\Desktop\\Sistemas Operativos\\ProyAscensoresC#\\Proyecto-Ascensores\\src\\program\\Program.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/coti/ucu/Proyecto-Ascensores/src/Program/Program.csproj",
+        "projectUniqueName": "C:\\Users\\leona\\Desktop\\Sistemas Operativos\\ProyAscensoresC#\\Proyecto-Ascensores\\src\\program\\Program.csproj",
         "projectName": "Program",
-        "projectPath": "/home/coti/ucu/Proyecto-Ascensores/src/Program/Program.csproj",
-        "packagesPath": "/home/coti/.nuget/packages/",
-        "outputPath": "/home/coti/ucu/Proyecto-Ascensores/src/Program/obj/",
+        "projectPath": "C:\\Users\\leona\\Desktop\\Sistemas Operativos\\ProyAscensoresC#\\Proyecto-Ascensores\\src\\program\\Program.csproj",
+        "packagesPath": "C:\\Users\\leona\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\leona\\Desktop\\Sistemas Operativos\\ProyAscensoresC#\\Proyecto-Ascensores\\src\\program\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/coti/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\leona\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
@@ -78,8 +78,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "/home/coti/ucu/Proyecto-Ascensores/src/Library/Library.csproj": {
-                "projectPath": "/home/coti/ucu/Proyecto-Ascensores/src/Library/Library.csproj"
+              "C:\\Users\\leona\\Desktop\\Sistemas Operativos\\ProyAscensoresC#\\Proyecto-Ascensores\\src\\Library\\Library.csproj": {
+                "projectPath": "C:\\Users\\leona\\Desktop\\Sistemas Operativos\\ProyAscensoresC#\\Proyecto-Ascensores\\src\\Library\\Library.csproj"
               }
             }
           }
@@ -108,7 +108,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/6.0.113/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.311\\RuntimeIdentifierGraph.json"
         }
       }
     }
