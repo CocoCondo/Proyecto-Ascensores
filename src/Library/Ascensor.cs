@@ -1,4 +1,5 @@
 ﻿namespace Proyecto;
+using System;
 public class Ascensor
 {
     private int id{get;}
@@ -14,15 +15,19 @@ public class Ascensor
         this.paradas = new List<int>();
     }
 
-    public int calcularPesoAscensor(){
-        Console.WriteLine("Calculando peso del ascensor");
-        return 0;
-    }
-    public void mover(int piso){
-        Console.WriteLine("Moviendose al piso x");        
+    //ACA VA A CORRER TODO EL PROGRAMA DEL ASCENSOR
+    public void AscensorEjecutando(){
+        Console.WriteLine("Ascensor iniciado");
     }
 
-    public void agregarParada(int piso){
+    // HELPERS
+    private void CalcularPesoAscensor(){
+        Console.WriteLine("Calculando peso del ascensor");
+    }
+    private void Mover(int piso){
+        Console.WriteLine("Moviendose al piso x");        
+    }
+    private void AgregarParada(int piso){
         Console.WriteLine("Agregando parada");
     }
 

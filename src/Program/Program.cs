@@ -1,2 +1,4 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿using Proyecto;
+
+Controlador controlador = new Controlador(2);
+controlador.IniciarAscensores();

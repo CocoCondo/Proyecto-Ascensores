@@ -2,21 +2,19 @@ namespace Proyecto;
 
 public class Controlador
 {
-    /// <summary>
-    /// Define la cantidad de ascensores que tiene el edificio.
-    /// </summary>
-    private static int CANTIDAD_ASCENSORES = 5;
+
     /// <summary>
     /// Variable que modifica el estado de operación del controlador.
     /// </summary>
     /// <value>True o False</value>
     private bool stopControlador { set; get; }
+
     /// <summary>
-    /// Lista que almacena los ascensores que controla.
+    /// Cantidad de ascensores que controla.
     /// </summary>
     /// <typeparam name="Ascensor"></typeparam>
-    /// <returns>Lista de ascensores</returns>
-    private static List<Ascensor> listaAscensores = new List<Ascensor>(CANTIDAD_ASCENSORES);
+    /// <returns>Numero de ascensores</returns>
+    private int cantAscensores;
 
     private static Controlador instance = new Controlador();
     private Controlador()
@@ -26,8 +24,9 @@ public class Controlador
             throw new Exception("Already instantiated");
         }
         stopControlador = false;
-        iniciarAscensores();
+        IniciarAscensores();
     }
+
     /// <summary>
     /// Singleton para el Controlador
     /// </summary>
@@ -36,37 +35,33 @@ public class Controlador
     {
         return instance;
     }
-    /// <summary>
-    /// Lista de ascensores
-    /// </summary>
-    /// <value></value>
-    private List<Ascensor> ascensores { get; set; }
+
     /// <summary>
     /// Lista de solicitudes
     /// </summary>
     /// <value></value>
-    private List<Solicitud> solicitudes { get; set; }
+    // private List<Solicitud> solicitudes { get; set; }
 
-    public Controlador(List<Ascensor> ascensores, List<Solicitud> solicitudes)
+    // public Controlador(int cantAscensores, List<Solicitud> solicitudes)
+    public Controlador(int cantAscensores)
     {
-        this.ascensores = ascensores;
-        this.solicitudes = solicitudes;
+        this.cantAscensores = cantAscensores;
+        // this.solicitudes = solicitudes;
     }
-    private void iniciarAscensores()
+    public void IniciarAscensores()
     {
-        for (int i = 0; i < CANTIDAD_ASCENSORES; i++)
+        for (int i = 0; i < cantAscensores; i++)
         {
             Ascensor ascensor = new Ascensor(i);
-            // Thread asc = new Thread(new ThreadStart(aversiestocompila));
-            // asc.Start();
-
+            Thread asc = new Thread(new ThreadStart(ascensor.AscensorEjecutando));
+            asc.Start();
         }
 
 
     }
 
 /* HAY QUE PONER UN SEMAFOROOOOOO
-    public static void updateElevatorLists(Elevator elevator)
+    public static void ActualizarListaAsscensores(Elevator elevator)
     {
         if (elevator.getElevatorState().equals(ElevatorState.UP))
         {
