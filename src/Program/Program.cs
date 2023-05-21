@@ -1,4 +1,5 @@
 ﻿using Proyecto;
-
-Controlador controlador = new Controlador(2);
-controlador.IniciarAscensores();
+Simulacion sim = new Simulacion();
+sim.procesarSolicitudes("solicitudes.txt");
+Controlador controlador = Controlador.GetInstance();
+controlador.run();

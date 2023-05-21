@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "fCxiuXNpQBCGUJ0YiMBcNB7jjwCsexzLJXO1xFkKB2f6HuGw7EZu5k9fbaGNeAbSBZ9C3+rFUQSXpqynCtHlaw==",
+  "dgSpecHash": "2u0soEIzciYwNtHZ7fwF/pzKfWulD7akMvrmYz3i56OYeajqHaVQBoEUjTcj9E5i2tTgf7dndCiiFFxuK9gwvw==",
   "success": true,
-  "projectFilePath": "/home/coti/ucu/Proyecto-Ascensores/src/Library/Library.csproj",
+  "projectFilePath": "C:\\Users\\leona\\Desktop\\Sistemas Operativos\\ProyAscensoresC#\\Proyecto-Ascensores\\src\\Library\\Library.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
