@@ -84,7 +84,7 @@ public class Controlador
         }
     }
 
-    private Ascensor buscarAscensor(int pisoSolicitud)
+    private Ascensor BuscarAscensor(int pisoSolicitud)
     {
         int mayor = int.MaxValue;
         Ascensor resultado = null;
@@ -138,7 +138,7 @@ public class Controlador
             {
                 int solPisoActual = colaPisos.Dequeue(); //Toma el primer elemento de la cola (FIFO)
                 mutexSolicitudPiso.ReleaseMutex();
-                Ascensor ascensor = buscarAscensor(solPisoActual); //Busco el ascensor que esté más cerca de la solicitud
+                Ascensor ascensor = BuscarAscensor(solPisoActual); //Busco el ascensor que esté más cerca de la solicitud
                 if (ascensor != null)
                 {
                     ascensor.listaParadas.Add(solPisoActual); //Agrega la solicitud a la lista de paradas del ascensor seleccionado
