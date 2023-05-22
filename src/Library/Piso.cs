@@ -6,4 +6,12 @@ public class Piso{
     public Piso(int numPiso){
         this.numPiso = numPiso;
     }
+
+    public void AgregarSolicitudEnPiso(Solicitud solicitud, int prioridad){
+        colaSolPiso.Enqueue(solicitud, prioridad);
+    }
+
+    public Solicitud QuitarSolicitudEnPiso(){
+        return colaSolPiso.Dequeue();
+    }
 }

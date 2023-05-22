@@ -2,7 +2,7 @@ namespace Proyecto;
 public class Simulacion
 {
     Controlador controlador = Controlador.GetInstance();
-    public void procesarSolicitudes(String archivo)
+    public void cargarSolicitudes(String archivo)
     {
         int PISO_ACUAL = 0;
         int PISO_DESTINO = 1;
@@ -22,7 +22,6 @@ public class Simulacion
                 String[] sol = line.Split(",");
                 //Solicitud = int pisoActual, int pisoDestino, int peso, int priodidad
                 Solicitud solicitud = new Solicitud(Int32.Parse(sol[PISO_ACUAL]),Int32.Parse(sol[PISO_DESTINO]),Int32.Parse(sol[PESO]),Int32.Parse(sol[PRIORIDAD]));
-                // proteger 
                 controlador.agregarSolicitudes(solicitud.pisoActual, solicitud);
                 Console.WriteLine("Solicitud agregada");
             }
