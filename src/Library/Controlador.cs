@@ -6,7 +6,7 @@ public class Controlador
     /// Mutex para bloquear la cola de solicitudes al operar sobre ella
     /// </summary>
     /// <returns></returns>
-    private static Mutex mutexColaSolicitudes = new Mutex();
+    public Mutex mutexColaSolicitudes = new Mutex();
     /// <summary>
     /// Cantidad de pisos que tiene el edificio
     /// </summary>
@@ -28,7 +28,7 @@ public class Controlador
     /// </summary>
     /// <typeparam name="Solicitud"></typeparam>
     /// <returns></returns>
-    public Queue<int> colaSolPisos { get; private set; } = new Queue<int>(); //Adentro tiene Piso.numPiso's
+    public Queue<int> colaPisos { get; private set; } = new Queue<int>(); //Adentro tiene Piso.numPiso's
     private List<Ascensor> listaAscensores = new List<Ascensor>(cantAscensores);
     public Piso[] pisosEdificio { get; private set; } = new Piso[numPisos]; //Creo un array con de tamaño cantPisos. Cada piso tiene su propia cola
     /// <summary>
@@ -55,7 +55,7 @@ public class Controlador
     public void agregarSolicitudes(int piso, Solicitud solicitud)
     {
         this.pisosEdificio[piso].colaSolPiso.Enqueue(solicitud, solicitud.prioridad);
-        this.colaSolPisos.Enqueue(piso);
+        this.colaPisos.Enqueue(piso);
     }
 
     /// <summary>
@@ -82,7 +82,7 @@ public class Controlador
         }
     }
 
-    // pisoSolicitud sale de colaSolPisos
+    // pisoSolicitud sale de colaPisos
     private Ascensor buscarAscensor(int pisoSolicitud)
     {
         int mayor = int.MaxValue;
@@ -134,17 +134,19 @@ public class Controlador
         {
             // proteger lectura de colaSolicitudes
             mutexColaSolicitudes.WaitOne();
-            if (colaSolPisos.Count() != 0)
+            if(colaPisos.Count() != 0)
             {
-                int solPisoActual = colaSolPisos.Dequeue(); //Toma el primer elemento de la cola (FIFO)
+                int solPisoActual = colaPisos.Dequeue(); //Toma el primer elemento de la cola (FIFO)
+                mutexColaSolicitudes.ReleaseMutex();
                 Ascensor ascensor = buscarAscensor(solPisoActual); //Busco el ascensor que esté más cerca de la solicitud
                 if (ascensor != null)
                 {
                     ascensor.listaParadas.Add(solPisoActual); //Agrega la solicitud a la lista de paradas del ascensor seleccionado
                 }
-
-                mutexColaSolicitudes.ReleaseMutex();
+                mutexColaSolicitudes.WaitOne();
             }
+            mutexColaSolicitudes.ReleaseMutex();
+
         }
     }
 }

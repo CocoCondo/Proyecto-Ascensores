@@ -105,9 +105,9 @@ public class Ascensor
                 }
 
                 // proteger lectura de pisosEdificio?
-                mutexSolicitudPiso.WaitOne();
+                controlador.mutexColaSolicitudes.WaitOne();
                 Piso pisoActual = controlador.pisosEdificio[this.pisoActual]; //Para poder fijarme si hay sols pendientes en el piso:
-                mutexSolicitudPiso.ReleaseMutex();
+                controlador.mutexColaSolicitudes.ReleaseMutex();
                 while (pisoActual.colaSolPiso.Count != 0)
                 {
                     Solicitud solicitud = pisoActual.colaSolPiso.Dequeue(); //Hago que un pasajero entre al ascensor!
@@ -141,9 +141,9 @@ public class Ascensor
                     {
                         Console.WriteLine("El pasajero " + solicitud.idSolicitud + " se bajó del ascensor al superarse el peso límite.");
                         pisoActual.colaSolPiso.Enqueue(solicitud, solicitud.prioridad); //Se devuelve la solicitud a la cola del piso
-                        mutexSolicitudPiso.WaitOne();
-                        controlador.colaSolPisos.Enqueue(pisoActual.numPiso); //Como quedan llamadas pendientes, le dice al controlador que mande otro ascensor
-                        mutexSolicitudPiso.ReleaseMutex();
+                        controlador.mutexColaSolicitudes.WaitOne();
+                        controlador.colaPisos.Enqueue(pisoActual.numPiso); //Como quedan llamadas pendientes, le dice al controlador que mande otro ascensor
+                        controlador.mutexColaSolicitudes.ReleaseMutex();
                         break; //Sale del bucle porque el ascensor está lleno, por lo tanto no puede aceptar más solicitudes
                     }
                 }
