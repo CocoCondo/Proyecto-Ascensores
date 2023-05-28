@@ -1,5 +1,7 @@
 ﻿namespace Proyecto;
 using System;
+using System.Text;
+
 public class Ascensor
 {
     /// <summary>
@@ -14,6 +16,7 @@ public class Ascensor
     public bool operando { get; private set; }
     public Direccion direccion { get; private set; }
     public List<int> listaParadas { get; private set; }
+    public LinkedList<Solicitud>[] listaSol = new LinkedList<Solicitud>[Controlador.numPisos];
     private static Mutex mutexSolicitudPiso = new Mutex();
 
     public Ascensor(int id)
@@ -24,6 +27,25 @@ public class Ascensor
         this.operando = false;
         this.direccion = Direccion.STOP;
         this.listaParadas = new List<int>();
+        for (int i = 0; i<listaSol.Length;i++){
+            listaSol[i] = new LinkedList<Solicitud>();
+        }
+    }
+
+    public int getPeso()
+    {
+        int peso = 0;
+        for (int i = 0; i < listaSol.Length; i++)
+        {
+            if (listaSol[i] != null)
+            {
+                foreach (Solicitud s in listaSol[i])
+                {
+                    peso += s.peso;
+                }
+            }
+        }
+        return peso;
     }
 
     public void mover(int pisoDestino)
@@ -46,7 +68,18 @@ public class Ascensor
                 Thread.Sleep(1000);
             }
         }
-        Console.WriteLine("FIN: Elevator " + id + " ha llegado al piso: " + pisoActual);
+        StringBuilder solBajas = new StringBuilder();
+        solBajas.Append("FIN: Elevator " + id + " llegó al piso: " + pisoActual)
+        .Append("- Se bajan:");
+        if (this.listaSol[pisoActual] != null)
+        {
+            foreach (Solicitud s in this.listaSol[pisoActual])
+            {
+                solBajas.Append(s.idSolicitud + ",");
+            }
+            this.listaSol[pisoActual].Clear();
+        }
+        Console.WriteLine(solBajas);
     }
 
     //ACA VA A CORRER TODO EL PROGRAMA DEL ASCENSOR
@@ -78,7 +111,7 @@ public class Ascensor
                 while (pisoActual.colaSolPiso.Count != 0)
                 {
                     Solicitud solicitud = pisoActual.colaSolPiso.Dequeue(); //Hago que un pasajero entre al ascensor!
-                    if (pesoAscensor + solicitud.peso < PESO_MAXIMO)
+                    if (getPeso() + solicitud.peso < PESO_MAXIMO)
                     {
                         if (solicitud.pisoDestino > MAX_PISOS)
                         {
@@ -86,7 +119,11 @@ public class Ascensor
                             continue;
                         }
                         Console.WriteLine("SUBE: Pasajero " + solicitud.idSolicitud + " Prioridad: " + solicitud.prioridad + "- O:" + solicitud.pisoActual + "/D:" + solicitud.pisoDestino);
-                        this.listaParadas.Add(solicitud.pisoDestino); //Agregado el destino a la cola
+                        if (!this.listaParadas.Contains(solicitud.pisoDestino))
+                        {
+                            this.listaParadas.Add(solicitud.pisoDestino); //Agregado el destino a la cola
+                        }
+                        this.listaSol[solicitud.pisoDestino].AddLast(solicitud);
                         if (this.listaParadas.First() < this.pisoActual)
                         { //Si el primer destino es para ABAJO:
                             this.direccion = Direccion.ABAJO;
