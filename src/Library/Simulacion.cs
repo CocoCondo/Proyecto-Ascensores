@@ -21,7 +21,6 @@ public class Simulacion
             {
                 String[] sol = line.Split(",");
                 //Solicitud = int pisoActual, int pisoDestino, int peso, int priodidad
-                Console.WriteLine(sol[0]);
                 if (sol[0].Contains("esperar"))
                 {
                     Int32.TryParse(sol[1],out int res);
