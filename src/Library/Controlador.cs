@@ -1,3 +1,5 @@
+using System.Diagnostics;
+
 namespace Proyecto;
 
 public class Controlador
@@ -29,6 +31,13 @@ public class Controlador
     /// <typeparam name="Solicitud"></typeparam>
     /// <returns></returns>
     public Queue<int> colaPisos { get; private set; } = new Queue<int>(); //Adentro tiene Piso.numPiso's
+    /// <summary>
+    /// Sirve para guardar los tiempos de espera que se van pasando en el archivo de solicitudes
+    /// </summary>
+    /// <typeparam name="int">Tiempo</typeparam>
+    /// <returns></returns>
+    public Stack<int> stackEspera { get; set; } = new Stack<int>();
+    public static Stopwatch sw;
     private List<Ascensor> listaAscensores = new List<Ascensor>(cantAscensores);
     public Piso[] pisosEdificio { get; private set; } = new Piso[numPisos]; //Creo un array con de tamaño cantPisos. Cada piso tiene su propia cola
     /// <summary>
@@ -56,6 +65,15 @@ public class Controlador
     {
         this.pisosEdificio[piso].colaSolPiso.Enqueue(solicitud, solicitud.prioridad);
         this.colaPisos.Enqueue(piso);
+    }
+    /// <summary>
+    /// Agrega una instancia de espera al controlador
+    /// </summary>
+    /// <param name="tEspera">Tiempo en segundos</param>
+    public void agregarEspera(int tEspera)
+    {
+        this.stackEspera.Push(tEspera); //Agrega el tiempo que va a esperar en segundos al stack
+        this.colaPisos.Enqueue(-1); //Agrega el -1 a la cola de pisos
     }
 
     /// <summary>
@@ -112,13 +130,13 @@ public class Controlador
             {
                 continue; //Si está yendo para arriba y ya pasó el piso, lo ignora como un campeón
             }
-            /*else //Para todo lo demás
-            { 
+            else //Para todo lo demás
+            {
                 if (Math.Abs(ascensor.pisoActual - pisoSolicitud) < mayor)  //Si el valor abs. de la dif. de piso es la menor
                 {
                     resultado = ascensor;   //Tomamos ese ascensor
                 }
-            } A ver si teniendo esto comentado no se rompe todo ======*/
+            }
         }
         return resultado; //Retorna el ascensor
     }
@@ -130,43 +148,40 @@ public class Controlador
     public void run()
     {
         IniciarAscensores();
+        sw = Stopwatch.StartNew();
         while (true)
         {
             // proteger lectura de colaSolicitudes
             mutexColaSolicitudes.WaitOne();
-            if(colaPisos.Count() != 0)
+            if (colaPisos.Count() != 0)
             {
                 int solPisoActual = colaPisos.Dequeue(); //Toma el primer elemento de la cola (FIFO)
                 mutexColaSolicitudes.ReleaseMutex();
-                Ascensor ascensor = buscarAscensor(solPisoActual); //Busco el ascensor que esté más cerca de la solicitud
-                if (ascensor != null)
-                {
-                    ascensor.listaParadas.Add(solPisoActual); //Agrega la solicitud a la lista de paradas del ascensor seleccionado
+                if (solPisoActual == -1)
+                { //-1 va a ser el código para decirle a controlador que voy a pasarle un tiempo de espera
+                    int tEspera = stackEspera.Pop(); //Toma el tiempo de espera que se pasó a la pila de tiempos
+                    Thread.Sleep(tEspera * 1000); //Lo multiplico por 1000 para que pueda pasarle en segundos, así es más facil
                 }
-                mutexColaSolicitudes.WaitOne();
+                else
+                {
+                    Ascensor ascensor = buscarAscensor(solPisoActual); //Busco el ascensor que esté más cerca de la solicitud
+                    if (ascensor != null)
+                    {
+                        if(!ascensor.listaParadas.Contains(solPisoActual)){
+                            ascensor.listaParadas.Add(solPisoActual); //Agrega la solicitud a la lista de paradas del ascensor seleccionado
+                        }
+                    }
+                }
             }
-            mutexColaSolicitudes.ReleaseMutex();
-
+            else
+            {
+                mutexColaSolicitudes.ReleaseMutex();
+            }
         }
     }
+
+    internal void agregarEspera(bool v)
+    {
+        throw new NotImplementedException();
+    }
 }
-
-/*
-==================== RESUMEN DE COSAS ============
-[x]Tiene que haber un array de tamaño cantPisos para representar el edificio
-[x]    Cada elto. del array tiene un objeto "Piso"
-    
-[x]Tiene que haber una clase Piso
-[x]    Contiene una *cola DE PRIORIDAD* de "Solicitud"
-
-Ascensor tiene que levantar las solicitudes hechas en el piso al llegar al piso requerido (esto es, cuando el controlador le dijo que vaya a ese piso)
-[x]    tiene que tener una cola de solicitudes
-[x]    tiene que controlar el peso cada vez que levanta una solicitud
-    Si quedan solicitudes en la cola del piso
-[x]        tiene que agregar la solicitud de piso a la cola de solicitudes del controlador
-[x]    Si ascensor está subiendo
-[x]    en el run: if(hay solicitudes) hace todo lo que tiene que hacer
-[x]                else: Direccion = Direccion.STOP
-*/
-
-// ASUMIMOS que todas las solicitudes, salvo las del piso 0, van a bajar
