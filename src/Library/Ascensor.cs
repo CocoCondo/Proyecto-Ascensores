@@ -69,7 +69,7 @@ public class Ascensor
             }
         }
         StringBuilder solBajas = new StringBuilder();
-        solBajas.Append("FIN: Elevator " + id + " llegó al piso: " + pisoActual)
+        solBajas.Append("FIN: Ascensor " + id + " llegó al piso: " + pisoActual)
         .Append("- Se bajan:");
         if (this.listaSol[pisoActual] != null)
         {
