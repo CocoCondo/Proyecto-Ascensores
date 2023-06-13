@@ -50,6 +50,7 @@ public class Controlador
     /// </summary>
     private Controlador()
     {
+        sw = Stopwatch.StartNew();
         stopControlador = false;
         for (int i = 0; i < numPisos; i++)
         {
@@ -123,20 +124,27 @@ public class Controlador
             {
                 if (Math.Abs(ascensor.pisoActual - pisoSolicitud) < mayor)  //Si el valor abs. de la dif. de piso es la menor
                 {
+                    mayor = ascensor.pisoActual;    //Se sobreescribe mayor para comparar los demás      
                     resultado = ascensor;   //Tomamos ese ascensor
                 }
             }
-            else if (ascensor.direccion == Direccion.ARRIBA && pisoSolicitud < ascensor.pisoActual)
-            {
-                continue; //Si está yendo para arriba y ya pasó el piso, lo ignora como un campeón
-            }
-            else //Para todo lo demás
+            else if (ascensor.direccion == Direccion.ABAJO && pisoSolicitud < ascensor.pisoActual) //Si el ascensor va para arriba y está abajo del piso origen
             {
                 if (Math.Abs(ascensor.pisoActual - pisoSolicitud) < mayor)  //Si el valor abs. de la dif. de piso es la menor
                 {
+                    mayor = ascensor.pisoActual;    //Se sobreescribe mayor para comparar los demás      
                     resultado = ascensor;   //Tomamos ese ascensor
                 }
             }
+            else
+            {
+                continue; //Si ya pasó el piso, lo ignora
+            }
+        }
+        if (resultado == null){
+            var random = new Random();
+            var index = random.Next(listaAscensores.Count);
+            resultado = listaAscensores[index]; //Si se satura el buscarascensor, agarra un ascensor al azar
         }
         return resultado; //Retorna el ascensor
     }
@@ -148,7 +156,6 @@ public class Controlador
     public void run()
     {
         IniciarAscensores();
-        sw = Stopwatch.StartNew();
         while (true)
         {
             // proteger lectura de colaSolicitudes
@@ -178,10 +185,5 @@ public class Controlador
                 mutexColaSolicitudes.ReleaseMutex();
             }
         }
-    }
-
-    internal void agregarEspera(bool v)
-    {
-        throw new NotImplementedException();
     }
 }

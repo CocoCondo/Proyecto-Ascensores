@@ -55,8 +55,7 @@ public class Ascensor
             int pisosRestantes = Math.Abs(this.pisoActual - pisoDestino);
             for (int i = 0; i < pisosRestantes; i++)
             {
-                Console.WriteLine(Math.Floor(Controlador.sw.Elapsed.TotalSeconds)+"seg>MOVER: Ascensor " + this.id + " viaja desde el piso: " + pisoActual
-                        + " al piso: " + pisoDestino);
+                Console.WriteLine(Math.Floor(Controlador.sw.Elapsed.TotalSeconds)+"seg>ASC. "+ this.id +" > MOVER: desde piso " +pisoActual+ " al piso " + pisoDestino);
                 if (pisoActual - pisoDestino < 0)
                 {
                     pisoActual++;
@@ -69,10 +68,10 @@ public class Ascensor
             }
         }
         StringBuilder solBajas = new StringBuilder();
-        solBajas.Append("FIN: Ascensor " + id + " llegó al piso: " + pisoActual)
-        .Append(" - BAJAN: Pasajeros Nro.:");
+        solBajas.Append("ASC. "+id+" > FIN: llegó al piso " + pisoActual);
         if (this.listaSol[pisoActual] != null)
         {
+            solBajas.Append(" > BAJA: ");
             foreach (Solicitud s in this.listaSol[pisoActual])
             {
                 solBajas.Append(s.idSolicitud + ",");
@@ -114,10 +113,10 @@ public class Ascensor
                     {
                         if (solicitud.pisoDestino > MAX_PISOS)
                         {
-                            Console.WriteLine(Math.Floor(Controlador.sw.Elapsed.TotalSeconds)+"seg>Solicitud al piso:" + solicitud.pisoDestino + " incorrecta. Abortando...");
+                            Console.WriteLine(Math.Floor(Controlador.sw.Elapsed.TotalSeconds)+"seg>Solicitud al Piso " + solicitud.pisoDestino + " incorrecta. Abortando...");
                             continue;
                         }
-                        Console.WriteLine(Math.Floor(Controlador.sw.Elapsed.TotalSeconds)+"seg>SUBE AL ASCENSOR "+this.id+" : Pasajero " + solicitud.idSolicitud + " Prioridad: " + solicitud.prioridad + "- O:" + solicitud.pisoActual + "/D:" + solicitud.pisoDestino);
+                        Console.WriteLine(Math.Floor(Controlador.sw.Elapsed.TotalSeconds)+"seg>ASC. "+this.id+" > SUBE: En el Piso " + solicitud.pisoActual +", el Pasajero " + solicitud.idSolicitud + " con Prioridad " + solicitud.prioridad + " y Destino " + solicitud.pisoDestino);
                         Thread.Sleep(1000); //1 seg para que suba un pasajero
                         if (!this.listaParadas.Contains(solicitud.pisoDestino))
                         {
@@ -139,7 +138,7 @@ public class Ascensor
                     }
                     else //Si el ascensor está lleno....
                     {
-                        Console.WriteLine(Math.Floor(Controlador.sw.Elapsed.TotalSeconds)+"seg>El pasajero " + solicitud.idSolicitud + " se bajó del ascensor al superarse el peso límite.");
+                        Console.WriteLine(Math.Floor(Controlador.sw.Elapsed.TotalSeconds)+"seg> ASC. "+this.id+" > PESO: " + solicitud.idSolicitud + " se bajó del ascensor al superarse el peso límite.");
                         Thread.Sleep(1000); //Si el pasajero baja, tarda un segundo
                         pisoActual.colaSolPiso.Enqueue(solicitud, solicitud.prioridad); //Se devuelve la solicitud a la cola del piso
                         controlador.mutexColaSolicitudes.WaitOne();
