@@ -75,7 +75,9 @@ public class Ascensor
             foreach (Solicitud s in this.listaSol[pisoActual])
             {
                 solBajas.Append(s.idSolicitud + ",");
-                Thread.Sleep(1000); //Si el pasajero baja, tarda un segundo
+                s.tTotalViaje = Math.Floor(Controlador.sw.Elapsed.TotalSeconds); //Capturo el tiempo de espera de la solicitud a subirse al ascensor
+                s.semTerminaViaje.Release();//Libero el semaforo del temporizador de la solicitud para capturar el tiempo que demoró en el viaje.
+                //Thread.Sleep(1000); //Si el pasajero baja, tarda un segundo
             }
             this.listaSol[pisoActual].Clear();
         }
@@ -118,6 +120,7 @@ public class Ascensor
                         }
                         Console.WriteLine(Math.Floor(Controlador.sw.Elapsed.TotalSeconds)+"seg>ASC. "+this.id+" > SUBE: En el Piso " + solicitud.pisoActual +", el Pasajero " + solicitud.idSolicitud + " con Prioridad " + solicitud.prioridad + " y Destino " + solicitud.pisoDestino);
                         Thread.Sleep(1000); //1 seg para que suba un pasajero
+                        solicitud.tTotalEspera = Math.Floor(Controlador.sw.Elapsed.TotalSeconds); //Capturo el tiempo de espera de la solicitud a subirse al ascensor
                         if (!this.listaParadas.Contains(solicitud.pisoDestino))
                         {
                             this.listaParadas.Add(solicitud.pisoDestino); //Agregado el destino a la cola

@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\leona\\Desktop\\Sistemas Operativos\\ProyAscensoresC#\\Proyecto-Ascensores\\src\\Library\\Library.csproj",
+      "projectUniqueName": "C:\\Users\\leona\\OneDrive\\Escritorio\\AscensoresOhYeah\\Proyecto-Ascensores\\src\\Library\\Library.csproj",
       "projectName": "Library",
-      "projectPath": "C:\\Users\\leona\\Desktop\\Sistemas Operativos\\ProyAscensoresC#\\Proyecto-Ascensores\\src\\Library\\Library.csproj",
+      "projectPath": "C:\\Users\\leona\\OneDrive\\Escritorio\\AscensoresOhYeah\\Proyecto-Ascensores\\src\\Library\\Library.csproj",
       "packagesPath": "C:\\Users\\leona\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\leona\\Desktop\\Sistemas Operativos\\ProyAscensoresC#\\Proyecto-Ascensores\\src\\Library\\obj\\",
+      "outputPath": "C:\\Users\\leona\\OneDrive\\Escritorio\\AscensoresOhYeah\\Proyecto-Ascensores\\src\\Library\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\leona\\AppData\\Roaming\\NuGet\\NuGet.Config"
