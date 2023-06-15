@@ -50,13 +50,10 @@ public class Solicitud
         this.tSolicitado = Math.Floor(Controlador.sw.Elapsed.TotalSeconds);
         controlador.mutexColaSolicitudes.ReleaseMutex();
         
-        //mutexTerminaViaje.WaitOne(-1);
         semTerminaViaje.WaitOne();
 
         this.tTotalViaje = tTotalViaje-tTotalEspera;
         this.tTotalEspera = tTotalEspera-tSolicitado;
-        
-        Console.WriteLine(tTotalEspera.ToString()+tTotalViaje.ToString()+"XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
         
         controlador.mutexCSV.WaitOne(); //Mutex para modificar el CSV
         this.imprimirCSV(tTotalEspera, tTotalViaje); //Agrega al archivo CSV los datos de la solicitud
@@ -70,12 +67,5 @@ public class Solicitud
         var archivo = @"resultados.csv";
         File.AppendAllText(archivo,datosAImprimir.ToString()+Environment.NewLine);
     }
-    /* 
-        Al finalizar el viaje, la clase solicitud llama a metodo <<IMPRIMIR EN CSV>> para tener en un archivo compatible con excel
-        los tiempos de los viajes
-            Tiempo de espera al ascensor
-            Tiempo de viaje dentro del ascensor
-    */
-
     /*Hay que ver lo de la interfaz gráfica*/
 }
