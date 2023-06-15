@@ -32,11 +32,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\leona\\Desktop\\Sistemas Operativos\\ProyAscensoresC#\\Proyecto-Ascensores\\src\\program\\Program.csproj",
+      "projectUniqueName": "C:\\Users\\leona\\OneDrive\\Escritorio\\AscensoresOhYeah\\Proyecto-Ascensores\\src\\Program\\Program.csproj",
       "projectName": "Program",
-      "projectPath": "C:\\Users\\leona\\Desktop\\Sistemas Operativos\\ProyAscensoresC#\\Proyecto-Ascensores\\src\\program\\Program.csproj",
+      "projectPath": "C:\\Users\\leona\\OneDrive\\Escritorio\\AscensoresOhYeah\\Proyecto-Ascensores\\src\\Program\\Program.csproj",
       "packagesPath": "C:\\Users\\leona\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\leona\\Desktop\\Sistemas Operativos\\ProyAscensoresC#\\Proyecto-Ascensores\\src\\program\\obj\\",
+      "outputPath": "C:\\Users\\leona\\OneDrive\\Escritorio\\AscensoresOhYeah\\Proyecto-Ascensores\\src\\Program\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\leona\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -51,8 +51,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\leona\\Desktop\\Sistemas Operativos\\ProyAscensoresC#\\Proyecto-Ascensores\\src\\Library\\Library.csproj": {
-              "projectPath": "C:\\Users\\leona\\Desktop\\Sistemas Operativos\\ProyAscensoresC#\\Proyecto-Ascensores\\src\\Library\\Library.csproj"
+            "C:\\Users\\leona\\OneDrive\\Escritorio\\AscensoresOhYeah\\Proyecto-Ascensores\\src\\Library\\Library.csproj": {
+              "projectPath": "C:\\Users\\leona\\OneDrive\\Escritorio\\AscensoresOhYeah\\Proyecto-Ascensores\\src\\Library\\Library.csproj"
             }
           }
         }

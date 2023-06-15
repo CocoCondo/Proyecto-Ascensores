@@ -9,6 +9,7 @@ public class Controlador
     /// </summary>
     /// <returns></returns>
     public Mutex mutexColaSolicitudes = new Mutex();
+    public Mutex mutexCSV = new Mutex();
     /// <summary>
     /// Cantidad de pisos que tiene el edificio
     /// </summary>
