@@ -12,7 +12,7 @@ public class Solicitud
     /// Define la prioridad en la cola del piso a través de un número entero.
     /// Mayor el numero = mayor prioridad
     /// </summary>
-    public int prioridad { get; private set; }
+    public int prioridad { get; set; }
     public int tEspera { get; private set; }
     Controlador controlador = Controlador.GetInstance();
     /// <summary>
