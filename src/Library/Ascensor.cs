@@ -143,7 +143,7 @@ public class Ascensor
                     {
                         Console.WriteLine(Math.Floor(Controlador.sw.Elapsed.TotalSeconds)+"seg> ASC. "+this.id+" > PESO: " + solicitud.idSolicitud + " se bajó del ascensor al superarse el peso límite.");
                         Thread.Sleep(1000); //Si el pasajero baja, tarda un segundo
-                        pisoActual.colaSolPiso.Enqueue(solicitud, solicitud.prioridad-1); //Se devuelve la solicitud a la cola del piso CON MAYOR PRIORIDAD (ENVEJECIMIENTO)
+                        pisoActual.colaSolPiso.Enqueue(solicitud, solicitud.prioridad); //Se devuelve la solicitud a la cola del piso CON MAYOR PRIORIDAD (ENVEJECIMIENTO)
                         controlador.mutexColaSolicitudes.WaitOne();
                         controlador.colaPisos.Enqueue(pisoActual.numPiso); //Como quedan llamadas pendientes, le dice al controlador que mande otro ascensor
                         controlador.mutexColaSolicitudes.ReleaseMutex();
